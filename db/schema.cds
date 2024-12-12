@@ -10,7 +10,7 @@ entity Ticket : cuid, managed {
 
 type TicketCategory : String enum {
     CreateSubaccount = 'CreateSubaccount';
-    AddMembersToSubaccount = Als Datenmodell angelegt basieren auf wie es in der Präsentation'AddMembersToSubaccount';
+    AddMembersToSubaccount = 'AddMembersToSubaccount';
     DeleteSubaccount = 'DeleteSubaccount';
     ChangeUserRoleCollection = 'ChangeUserRoleCollection';
     Other = 'Other'; Ja

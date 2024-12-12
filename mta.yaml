@@ -67,26 +67,12 @@ modules:
     build-result: resources
     requires:
     - artifacts:
-      - projectportofoliocustomersapp.zip
-      name: projectportofoliocustomersapp
+      - ticketingsystem.zip
+      name: ticketingsystem
       target-path: resources/
-    - artifacts:
-      - projectportfolioprojectsapp.zip
-      name: projectportfolioprojectsapp
-      target-path: resources/
-- name: projectportofoliocustomersapp
+- name: ticketingsystem
   type: html5
-  path: app/customersapp
-  build-parameters:
-    build-result: dist
-    builder: custom
-    commands:
-    - npm install
-    - npm run build:cf
-    supported-platforms: []
-- name: projectportfolioprojectsapp
-  type: html5
-  path: app/projectsapp
+  path: app/ticketingsystem
   build-parameters:
     build-result: dist
     builder: custom
