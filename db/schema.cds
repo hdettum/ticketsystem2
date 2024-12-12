@@ -1,23 +1,51 @@
 namespace projectportfolio.db;
-using { cuid, managed, sap.common.CodeList } from '@sap/cds/common';
+using { cuid, managed} from '@sap/cds/common';
 
-
-entity Projects : cuid, managed {
-    name : String(255) not null @title: '{i18n>name}' @mandatory;
-    startDate : Date not null @title: '{i18n>startDate}' @mandatory;
-    endDate : Date @title: '{i18n>endDate}';
-    description: String(512) @title: '{i18n>description}';
-    customer : Association to Customers @title: '{i18n>customer}';
-    type : Association to ProjectTypes @title: '{i18n>type}';
+// Basis Ticket Entity
+entity Ticket : cuid, managed {
+    category : TicketCategory not null @title: 'Category';
+    projectManager : String @title: 'Project Manager';
+    description : String @title: 'Description';
 }
 
-entity Customers : cuid, managed {
-    name : String not null @title: '{i18n>name}' @mandatory;
-    industry : String @title: '{i18n>industry}';
-    country : String @title: '{i18n>country}';
-    projects : Association to many Projects on projects.customer = $self @title: '{i18n>projects}';
+type TicketCategory : String enum {
+    CreateSubaccount = 'CreateSubaccount';
+    AddMembersToSubaccount = Als Datenmodell angelegt basieren auf wie es in der Präsentation'AddMembersToSubaccount';
+    DeleteSubaccount = 'DeleteSubaccount';
+    ChangeUserRoleCollection = 'ChangeUserRoleCollection';
+    Other = 'Other'; Ja
 }
 
-entity ProjectTypes : CodeList {
-    key code : String(10);
+entity CreateSubaccount : Ticket {
+    subaccountDisplayName : String @title: 'Subaccount Display Name';
+    costApprover : String @title: 'Cost Approver';
+    businessUnit : String @title: 'Business Unit';
+    costCenter : String @title: 'Cost Center';
+    subaccountDescription : String @title: 'Subaccount Description';
+    subaccountRegion : String @title: 'Subaccount Region';
+    subaccountParent : String @title: 'Subaccount Parent';
+    subaccountLabels : String @title: 'Subaccount Labels';
+    forProduction : Boolean @title: 'For Production';
+    betaFeatureEnabled : Boolean @title: 'Beta Feature Enabled';
+}
+
+entity AddMembersToSubaccount : Ticket {
+    subaccountDisplayName : String @title: 'Subaccount Display Name';
+    costApprover : String @title: 'Cost Approver';
+    businessUnit : String @title: 'Business Unit';
+    costCenter : String @title: 'Cost Center';
+    typeOfUser : String @title: 'Type of User';
+    nameOfUserToBeAdded : String @title: 'Name of user to be added';
+    roleCollection : String @title: 'Role Collection';
+}
+
+entity DeleteSubaccount : Ticket {
+    subaccountDisplayName : String @title: 'Subaccount Display Name';
+}
+
+entity ChangeUserRoleCollection : Ticket {
+    userIdToBeChanged : String @title: 'User ID to be changed';
+    emailToBeChanged : String @title: 'Email to be changed';
+    identityProvider : String @title: 'Identity Provider';
+    newRoleCollection : String @title: 'New Role Collection';
 }

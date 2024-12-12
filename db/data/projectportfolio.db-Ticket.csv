@@ -1,0 +1,6 @@
+ID;CREATEDON;CREATEDBY;MODIFIEDON;MODIFIEDBY;CATEGORY;PROJECTMANAGER;DESCRIPTION
+001;2024-12-01T12:00:00Z;admin;2024-12-01T12:00:00Z;admin;CreateSubaccount;John Doe;Test Ticket for Subaccount creation.
+002;2024-12-02T12:00:00Z;user1;2024-12-02T12:00:00Z;user1;AddMembersToSubaccount;Jane Doe;Add members to subaccount example.
+003;2024-12-03T12:00:00Z;admin;2024-12-03T12:00:00Z;admin;DeleteSubaccount;Mike Smith;Example ticket for deleting a subaccount.
+004;2024-12-04T12:00:00Z;admin;2024-12-04T12:00:00Z;admin;ChangeUserRoleCollection;Anna White;Change role collection example.
+005;2024-12-05T12:00:00Z;user2;2024-12-05T12:00:00Z;user2;Other;Emily Black;General ticket example.
