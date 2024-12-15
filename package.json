@@ -23,7 +23,6 @@
   },
   "scripts": {
     "start": "cds-serve",
-    "watch-customersapp": "cds watch --open customersapp/webapp/index.html?sap-ui-xx-viewCache=false",
     "undeploy": "cf undeploy cap-project-portfolio --delete-services --delete-service-keys --delete-service-brokers",
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
@@ -44,14 +43,14 @@
           }
         }
       },
-      "db": {
+    "db": {
         "kind": "sqlite",
         "credentials": {
           "url": "db.sqlite"
         }
       },
       "[production]": {
-        "auth": {
+    "auth": {
           "kind": "xsuaa"
         },
         "db": {
@@ -61,9 +60,6 @@
     }
   },
   "sapux": [
-    "app/customersapp",
-    "app/projectsapp",
-    "app/customeranalyticsapp",
     "app/ticketingsystem"
   ]
 }
