@@ -13,7 +13,7 @@ type TicketCategory : String enum {
     AddMembersToSubaccount = 'AddMembersToSubaccount';
     DeleteSubaccount = 'DeleteSubaccount';
     ChangeUserRoleCollection = 'ChangeUserRoleCollection';
-    Other = 'Other'; Ja
+    Other = 'Other'
 }
 
 entity CreateSubaccount : Ticket {

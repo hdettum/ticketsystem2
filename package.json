@@ -1,7 +1,7 @@
 {
   "name": "cap-project-portfolio",
   "version": "1.0.0",
-  "description": "A simple CAP project.",
+  "description": "Ticket System MSG.",
   "repository": "<Add your repository here>",
   "license": "UNLICENSED",
   "private": true,
@@ -13,53 +13,46 @@
     "passport": "^0"
   },
   "devDependencies": {
-    "@cap-js/sqlite": "^1",
+    "@cap-js/cds-types": "^0.7.0",
+    "@sap/cds-compiler": "^4.0.0",
     "@sap/cds-dk": "^8",
     "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+    "@sap/hdi-deploy": "^4",
     "@sap/ux-specification": "^1.120.1",
-    "@sapui5/ts-types": "^1.92.2",
+    "@sapui5/ts-types": "^1.131.1",
     "eslint": "^9",
+    "mbt": "^1.2.7",
     "rimraf": "^6"
   },
   "scripts": {
     "start": "cds-serve",
     "undeploy": "cf undeploy cap-project-portfolio --delete-services --delete-service-keys --delete-service-brokers",
-    "build": "rimraf resources mta_archives && mbt build --mtar archive",
-    "deploy": "cf deploy mta_archives/archive.mtar --retries 1",
-    "watch-projectsapp": "cds watch --open projectsapp/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-customeranalyticsapp": "cds watch --open customeranalyticsapp/webapp/index.html?sap-ui-xx-viewCache=false",
-    "watch-ticketingsystem": "cds watch --open ticketingsystem/webapp/index.html?sap-ui-xx-viewCache=false"
+    "build": "mbt build",
+    "deploy": "cf deploy mta_archives/cap-project-portfolio_1.0.0.mtar"
   },
   "cds": {
     "requires": {
+      "db": {
+        "kind": "hana"
+      },
       "auth": {
-        "kind": "mocked",
-        "users": {
-          "alice": {
-            "roles": [
-              "User",
-              "CustomerAdmin"
-            ]
-          }
-        }
-      },
-    "db": {
-        "kind": "sqlite",
-        "credentials": {
-          "url": "db.sqlite"
-        }
-      },
-      "[production]": {
-    "auth": {
-          "kind": "xsuaa"
+        "development": {
+          "kind": "dummy"
         },
-        "db": {
-          "kind": "hana"
+        "production": {
+          "kind": "xsuaa"
         }
       }
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
     }
   },
   "sapux": [
     "app/ticketingsystem"
-  ]
+  ],
+  "engines": {
+    "node": "^20.11.1",
+    "npm": "^10.2.4"
+  }
 }

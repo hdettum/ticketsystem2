@@ -1,50 +1,18 @@
-@url = http://localhost:4004/odata/v4/customers
+@url = http://localhost:4004/odata/v4/ticketingsystem
 @auth = Basic alice:alice
 
-###
-GET {{url}}/Customers
+# Get Tickets
+GET {{url}}/Tickets
 Authorization: {{auth}}
 
-###
-GET {{url}}/Customers/$count
-Authorization: {{auth}}
 
-###
-POST {{url}}/Customers
+# Ein neues Ticket erstellen
+POST {{url}}/Tickets
 Authorization: {{auth}}
 Content-Type: application/json
 
 {
-    "name": "ACME Inc."
+    "category": "CreateSubaccount",
+    "projectManager": "John Doe",
+    "description": "Test ticket description"
 }
-
-###
-# @name CreateSecondCustomer
-POST {{url}}/Customers
-Authorization: {{auth}}
-Content-Type: application/json
-
-{
-    "name": "Foo Inc."
-}
-
-###
-GET {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}},IsActiveEntity=false)
-Authorization: {{auth}}
-
-###
-DELETE {{url}}/Customers(ID={{CreateSecondCustomer.response.body.ID}},IsActiveEntity=false)
-Authorization: {{auth}}
-
-###
-GET {{url}}/ProjectTypes
-Authorization: {{auth}}
-
-###
-GET {{url}}/ProjectTypes
-Authorization: {{auth}}
-Accept-Language: de
-
-###
-GET {{url}}/Customers(ID=29514726-9142-4af7-96db-3221a4fb817b,IsActiveEntity=true)?$expand=projects
-Authorization: {{auth}}

@@ -101,7 +101,7 @@
           "name": "sap.fe.templates.ListReport",
           "options": {
             "settings": {
-              "contextPath": "/undefined",
+              "contextPath": "/Tickets",
               "variantManagement": "Page",
               "navigation": {
                 "": {
@@ -113,7 +113,7 @@
               "controlConfiguration": {
                 "@com.sap.vocabularies.UI.v1.LineItem": {
                   "tableSettings": {
-                    "type": "ResponsiveTable"
+                    "type": "GridTable"
                   }
                 }
               }
@@ -127,7 +127,7 @@
           "options": {
             "settings": {
               "editableHeaderContent": false,
-              "contextPath": "/undefined"
+              "contextPath": "/Tickets"
             }
           }
         }
