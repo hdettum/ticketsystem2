@@ -7,7 +7,6 @@
   "private": true,
   "dependencies": {
     "@cap-js/sqlite": "^1.7.7",
-    "@sap/cds": "^8",
     "@sap/cds-hana": "^2",
     "@sap/xssec": "^4",
     "express": "^4",
@@ -15,12 +14,14 @@
   },
   "devDependencies": {
     "@cap-js/cds-types": "^0.7.0",
+    "@sap/cds": "^8.5.1",
     "@sap/cds-compiler": "^4.0.0",
     "@sap/cds-dk": "^8",
     "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
     "@sap/hdi-deploy": "^4",
     "@sap/ux-specification": "^1.124.6",
     "@sapui5/ts-types": "^1.131.1",
+    "cds-launchpad-plugin": "^2.2.0",
     "eslint": "^9",
     "mbt": "^1.2.7",
     "rimraf": "^6"
