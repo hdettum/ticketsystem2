@@ -1,6 +1,8 @@
 using { projectportfolio.db as db } from '../db/schema';
 
-service TicketService @(path: '/ticket') {
+@path: '/ticket'
+service TicketService {
+    @odata.draft.enabled
     entity Tickets as projection on db.Ticket {
         *,
         category @mandatory,
@@ -8,6 +10,7 @@ service TicketService @(path: '/ticket') {
         description @mandatory
     };
 
+    @odata.draft.enabled
     entity CreateSubaccountTickets as projection on db.CreateSubaccount {
         *,
         category @mandatory,
@@ -22,6 +25,7 @@ service TicketService @(path: '/ticket') {
         subaccountParent @mandatory
     };
 
+    @odata.draft.enabled
     entity AddMembersTickets as projection on db.AddMembersToSubaccount {
         *,
         category @mandatory,
@@ -36,6 +40,7 @@ service TicketService @(path: '/ticket') {
         roleCollection @mandatory
     };
 
+    @odata.draft.enabled
     entity DeleteSubaccountTickets as projection on db.DeleteSubaccount {
         *,
         category @mandatory,
@@ -44,6 +49,7 @@ service TicketService @(path: '/ticket') {
         subaccountDisplayName @mandatory
     };
 
+    @odata.draft.enabled
     entity ChangeUserRoleTickets as projection on db.ChangeUserRoleCollection {
         *,
         category @mandatory,

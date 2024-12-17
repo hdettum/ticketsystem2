@@ -70,9 +70,23 @@ modules:
       - ticketingsystem.zip
       name: ticketingsystem
       target-path: resources/
+    - artifacts:
+      - ticketingform.zip
+      name: ticketingform
+      target-path: resources/
 - name: ticketingsystem
   type: html5
   path: app/ticketingsystem
+  build-parameters:
+    build-result: dist
+    builder: custom
+    commands:
+    - npm install
+    - npm run build:cf
+    supported-platforms: []
+- name: ticketingform
+  type: html5
+  path: app/ticketingform
   build-parameters:
     build-result: dist
     builder: custom
@@ -127,6 +141,12 @@ resources:
   parameters:
     service: html5-apps-repo
     service-name: cap-project-portfolio-html5-app-host-service
+    service-plan: app-host
+- name: cap-project-portfolio-repo-host
+  type: org.cloudfoundry.managed-service
+  parameters:
+    service: html5-apps-repo
+    service-name: cap-project-portfolio-html5-service
     service-plan: app-host
 parameters:
   deploy_mode: html5-repo
