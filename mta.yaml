@@ -74,6 +74,27 @@ modules:
       - ticketingform.zip
       name: ticketingform
       target-path: resources/
+  parameters:
+    content:
+      instance:
+        appHostId: cap-project-portfolio-html5-app-host-service
+        applications:
+          - name: ticketingsystem
+            path: ticketingsystem
+            description: "Manage tickets overview"
+            destination: cap-project-portfolio-srv-api
+            category: "Ticket Management"
+            navigation:
+              appId: ticketingsystem
+              intent: TicketSystem-display
+          - name: ticketingform
+            path: ticketingform
+            description: "Create new tickets"
+            destination: cap-project-portfolio-srv-api
+            category: "Ticket Management"
+            navigation:
+              appId: ticketingform
+              intent: TicketForm-display
 - name: ticketingsystem
   type: html5
   path: app/ticketingsystem

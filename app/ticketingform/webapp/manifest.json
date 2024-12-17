@@ -7,8 +7,8 @@
     "applicationVersion": {
       "version": "0.0.1"
     },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
+    "title": "Ticketing Form",
+    "description": "Create and manage new tickets",
     "resources": "resources.json",
     "sourceTemplate": {
       "id": "@sap/generator-fiori:feop",
@@ -22,6 +22,22 @@
         "settings": {
           "annotations": [],
           "odataVersion": "4.0"
+        }
+      }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "ticketingFormIntent": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "TicketingForm",
+          "action": "create",
+          "title": "Create Ticket",
+          "subTitle": "Submit new tickets",
+          "icon": "sap-icon://create-form",
+          "info": "Create new support tickets"
         }
       }
     }

@@ -24,6 +24,22 @@
           "odataVersion": "4.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "ticketSystemIntent": {
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          },
+          "semanticObject": "TicketSystem",
+          "action": "display",
+          "title": "Ticketing System",
+          "subTitle": "Manage all tickets",
+          "icon": "sap-icon://task",
+          "info": "Track and manage tickets efficiently"
+        }
+      }
     }
   },
   "sap.ui": {
