@@ -1,0 +1,19 @@
+{
+    "apps": [
+      {
+        "name": "TicketingSystem",
+        "path": "ticketingsystem/webapp",
+        "title": "Ticket Overview",
+        "description": "Manage and view all tickets",
+        "category": "Apps"
+      },
+      {
+        "name": "TicketingForm",
+        "path": "ticketingform/webapp",
+        "title": "Create New Ticket",
+        "description": "Add new tickets to the system",
+        "category": "Apps"
+      }
+    ]
+  }
+  

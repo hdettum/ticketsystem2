@@ -1,0 +1,12 @@
+specVersion: "3.0"
+metadata:
+  name: ticketingform
+type: application
+resources:
+  configuration:
+    paths:
+      webapp: webapp
+
+
+
+//ändern

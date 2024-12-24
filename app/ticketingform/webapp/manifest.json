@@ -1,0 +1,82 @@
+{
+    "_version": "1.85.0",
+    "sap.app": {
+      "id": "form.entry.app",
+      "type": "application",
+      "title": "Form Entry App",
+      "description": "An app for entering and managing form data",
+      "dataSources": {
+        "mainService": {
+          "uri": "/form-service/",
+          "type": "OData",
+          "settings": {
+            "odataVersion": "4.0"
+          }
+        }
+      },
+      "crossNavigation": {
+        "inbounds": {
+          "form-entry-intent": {
+            "signature": {
+              "parameters": {},
+              "additionalParameters": "allowed"
+            },
+            "semanticObject": "Form",
+            "action": "manage",
+            "title": "Form Entry App",
+            "icon": "sap-icon://form"
+          }
+        }
+      }
+    },
+    "sap.ui5": {
+      "flexEnabled": true,
+      "dependencies": {
+        "minUI5Version": "1.102.1",
+        "libs": {
+          "sap.m": {},
+          "sap.ui.core": {},
+          "sap.f": {},
+          "sap.suite.ui.generic.template": {}
+        }
+      },
+      "models": {
+        "": {
+          "dataSource": "mainService",
+          "preload": true,
+          "settings": {
+            "defaultBindingMode": "TwoWay"
+          }
+        }
+      },
+      "routing": {
+        "config": {
+          "routerClass": "sap.f.routing.Router",
+          "viewType": "XML",
+          "controlId": "app",
+          "controlAggregation": "pages",
+          "async": true
+        },
+        "routes": [
+          {
+            "pattern": ":?query:",
+            "name": "ObjectPage",
+            "target": "ObjectPage"
+          }
+        ],
+        "targets": {
+          "ObjectPage": {
+            "type": "Component",
+            "id": "ObjectPage",
+            "name": "sap.suite.ui.generic.template.ObjectPage",
+            "options": {
+              "settings": {
+                "entitySet": "FormEntries"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  
