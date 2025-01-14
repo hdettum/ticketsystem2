@@ -27,3 +27,22 @@ annotate service.Tickets with @(
     ]
 );
 
+annotate service.Tickets with {
+    category @(Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Tickets',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : category,
+                    ValueListProperty : 'category',
+                },
+            ],
+        },
+        Common.ValueListWithFixedValues : true
+)};
+
+annotate service.Tickets with {
+    description @UI.MultiLineText : true
+};
+
