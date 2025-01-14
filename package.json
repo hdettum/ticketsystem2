@@ -19,7 +19,9 @@
     "@sap/cds-dk": "^8",
     "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
     "@sap/hdi-deploy": "^4",
+    "@sap/ui5-builder-webide-extension": "^1.1.9",
     "@sap/ux-specification": "^1.124.6",
+    "@sap/ux-ui5-tooling": "^1.16.0",
     "@sapui5/ts-types": "^1.131.1",
     "cds-launchpad-plugin": "^2.2.0",
     "eslint": "^9",
@@ -61,7 +63,8 @@
     }
   },
   "sapux": [
-    "app/ticketingsystem"
+    "app/ticketingsystem",
+    "app/ticketingform"
   ],
   "engines": {
     "node": "^20.11.1",
