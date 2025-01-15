@@ -6,6 +6,11 @@ entity Ticket : cuid, managed {
     category : TicketCategory not null @title: 'Category';
     projectManager : String @title: 'Project Manager';
     description : String @title: 'Description';
+    to_CreateSubaccount : Composition of one CreateSubaccount;
+    to_AddMembers : Composition of one AddMembersToSubaccount;
+    to_DeleteSubaccount : Composition of one DeleteSubaccount;
+    to_ChangeRole : Composition of one ChangeUserRoleCollection;
+
 }
 
 type TicketCategory : String enum {

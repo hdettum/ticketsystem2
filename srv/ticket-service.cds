@@ -2,62 +2,58 @@ using { projectportfolio.db as db } from '../db/schema';
 
 @path: '/ticket'
 service TicketService {
+
     @odata.draft.enabled
     entity Tickets as projection on db.Ticket {
-        *,
-        category @mandatory,
-        projectManager @mandatory,
-        description @mandatory
+        ID,                           // Primärschlüssel der Ticket-Entität
+        category @mandatory,          // Kategorie des Tickets
+        projectManager @mandatory,    // Projektmanager
+        description @mandatory,       // Beschreibung
+        to_CreateSubaccount,          // Navigation zur CreateSubaccount-Entität
+        to_AddMembers,                // Navigation zur AddMembersToSubaccount-Entität
+        to_DeleteSubaccount,          // Navigation zur DeleteSubaccount-Entität
+        to_ChangeRole                 // Navigation zur ChangeUserRoleCollection-Entität
     };
 
-    @odata.draft.enabled
-    entity CreateSubaccountTickets as projection on db.CreateSubaccount {
-        *,
-        category @mandatory,
-        projectManager @mandatory,
-        description @mandatory,
+    // Details zu CreateSubaccount
+    entity CreateSubaccountDetails as projection on db.CreateSubaccount {
+        ID,                             // Primärschlüssel der Sub-Entität
         subaccountDisplayName @mandatory,
         costApprover @mandatory,
         businessUnit @mandatory,
         costCenter @mandatory,
-        subaccountDescription @mandatory,
-        subaccountRegion @mandatory,
-        subaccountParent @mandatory
+        subaccountDescription,
+        subaccountRegion,
+        subaccountParent,
+        subaccountLabels,
+        forProduction,
+        betaFeatureEnabled
     };
 
-    @odata.draft.enabled
-    entity AddMembersTickets as projection on db.AddMembersToSubaccount {
-        *,
-        category @mandatory,
-        projectManager @mandatory,
-        description @mandatory,
+    // Details zu AddMembers
+    entity AddMembersDetails as projection on db.AddMembersToSubaccount {
+        ID,                             // Primärschlüssel der Sub-Entität
         subaccountDisplayName @mandatory,
-        costApprover @mandatory,
-        businessUnit @mandatory,
-        costCenter @mandatory,
+        costApprover,
+        businessUnit,
+        costCenter,
         typeOfUser @mandatory,
         nameOfUserToBeAdded @mandatory,
         roleCollection @mandatory
     };
 
-    @odata.draft.enabled
-    entity DeleteSubaccountTickets as projection on db.DeleteSubaccount {
-        *,
-        category @mandatory,
-        projectManager @mandatory,
-        description @mandatory,
+    // Details zu DeleteSubaccount
+    entity DeleteSubaccountDetails as projection on db.DeleteSubaccount {
+        ID,                             // Primärschlüssel der Sub-Entität
         subaccountDisplayName @mandatory
     };
 
-    @odata.draft.enabled
-    entity ChangeUserRoleTickets as projection on db.ChangeUserRoleCollection {
-        *,
-        category @mandatory,
-        projectManager @mandatory,
-        description @mandatory,
+    // Details zu ChangeUserRoleCollection
+    entity ChangeUserRoleDetails as projection on db.ChangeUserRoleCollection {
+        ID,                             // Primärschlüssel der Sub-Entität
         userIdToBeChanged @mandatory,
-        emailToBeChanged @mandatory,
-        identityProvider @mandatory,
+        emailToBeChanged,
+        identityProvider,
         newRoleCollection @mandatory
     };
 }
