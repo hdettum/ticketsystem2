@@ -1,0 +1,6 @@
+code,name
+CreateSubaccount,CreateSubaccount
+AddMembersToSubaccount,AddMembersToSubaccount
+DeleteSubaccount,DeleteSubaccount
+ChangeUserRoleCollection,ChangeUserRoleCollection
+Other,Other

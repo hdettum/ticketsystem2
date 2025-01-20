@@ -1,0 +1,11 @@
+code,locale,name
+CreateSubaccount,en,Create Subaccount
+AddMembersToSubaccount,en,Add Members to Subaccount
+DeleteSubaccount,en,Delete Subaccount
+ChangeUserRoleCollection,en,Change User Role Collection
+Other,en,Other
+CreateSubaccount,de,Subaccount erstellen
+AddMembersToSubaccount,de,Benutzer dem Subaccount hinzufügen
+DeleteSubaccount,de,Subaccount löschen
+ChangeUserRoleCollection,de,Benutzer Role Collection löschen
+Other,de,Andere

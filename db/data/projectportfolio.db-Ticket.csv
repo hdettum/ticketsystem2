@@ -1,4 +1,4 @@
-ID;CATEGORY;PROJECTMANAGER;DESCRIPTION
+ID;CATEGORY_CODE;PROJECTMANAGER;DESCRIPTION
 001;CreateSubaccount;John Doe;Test Ticket for Subaccount creation
 002;AddMembersToSubaccount;Jane Doe;Add members to subaccount example
 003;DeleteSubaccount;Mike Smith;Example ticket for deleting a subaccount

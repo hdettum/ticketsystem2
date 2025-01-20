@@ -30,6 +30,7 @@
   },
   "scripts": {
     "start": "cds-serve",
+    "watch": "cds deploy && cds watch",
     "undeploy": "cf undeploy cap-project-portfolio --delete-services --delete-service-keys --delete-service-brokers",
     "build": "mbt build",
     "deploy": "cf deploy mta_archives/cap-project-portfolio_1.0.0.mtar"
@@ -37,23 +38,23 @@
   "cds": {
     "requires": {
       "db": {
-        "development": {
+        "[development]": {
           "kind": "sqlite",
           "impl": "@cap-js/sqlite",
           "credentials": {
             "url": "db.sqlite"
           }
         },
-        "production": {
+        "[production]": {
           "kind": "hana-cloud",
           "impl": "@cap-js/hana"
         }
       },
       "auth": {
-        "development": {
+        "[development]": {
           "kind": "dummy"
         },
-        "production": {
+        "[production]": {
           "kind": "xsuaa"
         }
       }
