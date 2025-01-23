@@ -6,6 +6,19 @@ annotate service.Tickets with @(
     Data : [
       {
         $Type: 'UI.DataField',
+        Value: ID,
+        Label: 'ID',
+      },
+       {
+        $Type: 'UI.DataField',
+        Value: modifiedAt,
+      },
+       {
+        $Type: 'UI.DataField',
+        Value: modifiedBy,
+      },
+      {
+        $Type: 'UI.DataField',
         Value: category_code,
       },
       {
@@ -15,7 +28,8 @@ annotate service.Tickets with @(
       {
         $Type: 'UI.DataField',
         Value: description,
-      }
+      },
+  
     ],
   },
   UI.Facets                            : [
@@ -54,6 +68,35 @@ annotate service.Tickets with @(
         true
       ]}},
     },
+    {
+      $Type        : 'UI.ReferenceFacet',
+      ID           : 'CreateSubaccount',
+      Label        : 'Create Subaccount',
+      Target       : '@UI.FieldGroup#CreateSubaccount',
+      ![@UI.Hidden]: {$edmJson: {$If: [
+        {$Eq: [
+          {$Path: 'category_code'},
+          'CreateSubaccount'
+        ]},
+        false,
+        true
+      ]}},
+    },
+
+     {
+      $Type        : 'UI.ReferenceFacet',
+      ID           : 'ChangeUserRoleCollection',
+      Label        : 'Change user role collection',
+      Target       : '@UI.FieldGroup#ChangeUserRoleCollection',
+      ![@UI.Hidden]: {$edmJson: {$If: [
+        {$Eq: [
+          {$Path: 'category_code'},
+          'ChangeUserRoleCollection'
+        ]},
+        false,
+        true
+      ]}},
+    },
 
   ],
   UI.FieldGroup #Test                  : {
@@ -63,20 +106,77 @@ annotate service.Tickets with @(
       Value: to_AddMembers.businessUnit,
     }, ],
   },
+   UI.FieldGroup #CreateSubaccount                 : {
+    $Type: 'UI.FieldGroupType',
+    Data : [
+    {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.subaccountDisplayName,
+    },
+    {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.costApprover,
+    },
+    {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.businessUnit,
+    },
+    {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.costCenter,
+    },
+     {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.subaccountDescription,
+    }, 
+     {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.subaccountRegion,
+    }, 
+     {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.subaccountParent,
+    }, 
+     {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.subaccountLabels,
+    }, 
+    {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.forProduction,
+    }, 
+    {
+      $Type: 'UI.DataField',
+      Value: to_CreateSubaccount.betaFeatureEnabled,
+    }, ],
+  },
   UI.FieldGroup #DeleteSubaccount      : {
     $Type: 'UI.FieldGroupType',
     Data : [
       {
         $Type: 'UI.DataField',
-        Value: to_DeleteSubaccount.modifiedAt,
-      },
-      {
-        $Type: 'UI.DataField',
-        Value: to_DeleteSubaccount.modifiedBy,
-      },
-      {
-        $Type: 'UI.DataField',
         Value: to_DeleteSubaccount.subaccountDisplayName,
+      },
+    ],
+  },
+  UI.FieldGroup #ChangeUserRoleCollection     : {
+    $Type: 'UI.FieldGroupType',
+    Data : [
+      {
+        $Type: 'UI.DataField',
+        Value: to_ChangeRole.userIdToBeChanged,
+      },
+       {
+        $Type: 'UI.DataField',
+        Value: to_ChangeRole.emailToBeChanged,
+      },
+       {
+        $Type: 'UI.DataField',
+        Value: to_ChangeRole.identityProvider,
+      },
+       {
+        $Type: 'UI.DataField',
+        Value: to_ChangeRole.newRoleCollection,
       },
     ],
   },
@@ -94,27 +194,6 @@ annotate service.Tickets with @(
       {
         $Type: 'UI.DataField',
         Value: to_AddMembers.costCenter,
-      },
-      {
-        $Type: 'UI.DataField',
-        Value: to_AddMembers.createdAt,
-      },
-      {
-        $Type: 'UI.DataField',
-        Value: to_AddMembers.createdBy,
-      },
-      {
-        $Type: 'UI.DataField',
-        Value: to_AddMembers.ID,
-        Label: 'ID',
-      },
-      {
-        $Type: 'UI.DataField',
-        Value: to_AddMembers.modifiedAt,
-      },
-      {
-        $Type: 'UI.DataField',
-        Value: to_AddMembers.modifiedBy,
       },
       {
         $Type: 'UI.DataField',

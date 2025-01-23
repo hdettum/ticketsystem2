@@ -119,6 +119,7 @@
             "settings": {
               "contextPath": "/Tickets",
               "variantManagement": "Page",
+              "initialLoad": "Enabled", 
               "navigation": {
                 "": {
                   "detail": {
