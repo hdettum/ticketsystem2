@@ -46,8 +46,7 @@
           }
         },
         "[production]": {
-          "kind": "hana-cloud",
-          "impl": "@cap-js/hana"
+          "kind": "hana"
         }
       },
       "auth": {
@@ -58,9 +57,6 @@
           "kind": "xsuaa"
         }
       }
-    },
-    "hana": {
-      "deploy-format": "hdbtable"
     }
   },
   "sapux": [
