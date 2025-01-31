@@ -2,13 +2,25 @@ _schema-version: "3.1"
 ID: cap-project-portfolio
 description: A simple CAP project.
 version: 1.0.0
+parameters:
+  deploy_mode: html5-repo
+  enable-parallel-deployments: true
+build-parameters:
+  before-all:
+  - builder: custom
+    commands:
+    - npm ci
+    - npx cds build --production
+
+
 modules:
 - name: cap-project-portfolio-srv
   type: nodejs
-  path: gen/srv
+  path: .
   requires:
   - name: cap-project-portfolio-auth
   - name: cap-project-portfolio-db
+  - name: cap-project-portfolio-destination-service
   provides:
   - name: srv-api
     properties:
@@ -18,7 +30,7 @@ modules:
     disk-quota: 768M
     memory: 256M
   build-parameters:
-    builder: npm
+    build-result: gen/srv
 - name: cap-project-portfolio-db-deployer
   type: hdb
   path: gen/db
@@ -40,12 +52,15 @@ modules:
     parameters:
       service-key:
         name: cap-project-portfolio-auth-key
+  - name: srv-api
+    parameters:
+      content-target: true
   parameters:
     content:
       instance:
         destinations:
-        - Name: projectportfolio_cap_project_portfolio_html_repo_host
-          ServiceInstanceName: cap-project-portfolio-html5-app-host-service
+        - Name: cap-project-portfolio_html_repo_host
+          ServiceInstanceName: cap-project-portfolio_html_repo_host
           ServiceKeyName: cap-project-portfolio_html_repo_host-key
           sap.cloud.service: projectportfolio
         - Authentication: OAuth2UserTokenExchange
@@ -53,7 +68,13 @@ modules:
           ServiceInstanceName: cap-project-portfolio-auth
           ServiceKeyName: cap-project-portfolio-auth-key
           sap.cloud.service: projectportfolio
-        existing_destinations_policy: ignore
+        - Name: cap-project-portfolio-srv-api
+          Authentication: OAuth2UserTokenExchange
+          TokenServiceInstanceName: cap-project-portfolio-auth
+          TokenServiceKeyName: cap-project-portfolio-auth-key
+          URL: "~{srv-api/srv-url}"
+          sap.cloud.service: projectportfolio
+        existing_destinations_policy: update
   build-parameters:
     no-source: true
 - name: cap-project-portfolio-app-content
@@ -63,6 +84,7 @@ modules:
   - name: cap-project-portfolio_html_repo_host
     parameters:
       content-target: true
+  - name: cap-project-portfolio-destination-service
   build-parameters:
     build-result: resources
     requires:
@@ -74,27 +96,6 @@ modules:
       - ticketingform.zip
       name: ticketingform
       target-path: resources/
-  parameters:
-    content:
-      instance:
-        appHostId: cap-project-portfolio-html5-app-host-service
-        applications:
-          - name: ticketingsystem
-            path: ticketingsystem
-            description: "Manage tickets overview"
-            destination: cap-project-portfolio-srv-api
-            category: "Ticket Management"
-            navigation:
-              appId: ticketingsystem
-              intent: TicketSystem-display
-          - name: ticketingform
-            path: ticketingform
-            description: "Create new tickets"
-            destination: cap-project-portfolio-srv-api
-            category: "Ticket Management"
-            navigation:
-              appId: ticketingform
-              intent: TicketForm-display
 - name: ticketingsystem
   type: html5
   path: app/ticketingsystem
@@ -143,37 +144,14 @@ resources:
             ProxyType: Internet
             Type: HTTP
             URL: https://ui5.sap.com
-          - Authentication: NoAuthentication
-            HTML5.DynamicDestination: true
-            HTML5.ForwardAuthToken: true
-            Name: cap-project-portfolio-srv-api
-            ProxyType: Internet
-            Type: HTTP
-            URL: ~{srv-api/srv-url}
           existing_destinations_policy: update
       version: 1.0.0
     service: destination
-    service-name: cap-project-portfolio-destination-service
     service-plan: lite
-  requires:
-  - name: srv-api
 - name: cap-project-portfolio_html_repo_host
   type: org.cloudfoundry.managed-service
   parameters:
     service: html5-apps-repo
-    service-name: cap-project-portfolio-html5-app-host-service
     service-plan: app-host
-- name: cap-project-portfolio-repo-host
-  type: org.cloudfoundry.managed-service
-  parameters:
-    service: html5-apps-repo
-    service-name: cap-project-portfolio-html5-service
-    service-plan: app-host
-parameters:
-  deploy_mode: html5-repo
-  enable-parallel-deployments: true
-build-parameters:
-  before-all:
-  - builder: custom
-    commands:
-    - npx cds build --production
+
+
